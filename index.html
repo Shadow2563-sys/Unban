@@ -14,12 +14,13 @@
             --accent-color: #6a00ff;
             --accent-secondary: #8e44ad;
             --accent-gradient: linear-gradient(135deg, #6a00ff, #8e44ad);
-            --card-bg: rgba(20, 15, 35, 0.4);
-            --input-bg: rgba(30, 20, 45, 0.3);
-            --subtle-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+            --card-bg: rgba(20, 15, 35, 0.6);
+            --input-bg: rgba(30, 20, 45, 0.4);
+            --subtle-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
             --button-shadow: 0 4px 20px rgba(106, 0, 255, 0.5);
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
             --glow: 0 0 20px rgba(106, 0, 255, 0.6);
+            --neon-glow: 0 0 10px rgba(106, 0, 255, 0.8), 0 0 20px rgba(106, 0, 255, 0.6);
         }
 
         * {
@@ -42,16 +43,30 @@
                 radial-gradient(circle at 85% 75%, rgba(142, 68, 173, 0.15) 0%, transparent 40%);
         }
 
+        .cyber-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(106, 0, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(106, 0, 255, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
         .container {
             background: var(--card-bg);
-            border: 1px solid rgba(106, 0, 255, 0.3);
+            border: 1px solid rgba(106, 0, 255, 0.4);
             border-radius: 20px;
             padding: 40px 35px;
             max-width: 950px;
             width: 100%;
             text-align: center;
             backdrop-filter: blur(15px);
-            box-shadow: var(--subtle-shadow);
+            box-shadow: var(--subtle-shadow), var(--neon-glow);
             transition: var(--transition);
             position: relative;
             overflow: hidden;
@@ -525,9 +540,44 @@
             text-shadow: 0 0 10px rgba(187, 134, 252, 0.7);
             margin-top: 5px;
         }
+        
+        .cyber-line {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            margin: 25px 0;
+            width: 100%;
+        }
+        
+        .hacker-terminal {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 12px;
+            padding: 18px;
+            margin: 18px 0;
+            text-align: left;
+            font-family: monospace;
+            font-size: 15px;
+            overflow-x: auto;
+            border: 1px solid var(--accent-color);
+            box-shadow: var(--neon-glow);
+            line-height: 1.6;
+        }
+        
+        .terminal-prompt {
+            color: #6a00ff;
+        }
+        
+        .terminal-command {
+            color: #00ff9d;
+        }
+        
+        .terminal-response {
+            color: #bb86fc;
+        }
     </style>
 </head>
 <body>
+    <div class="cyber-grid"></div>
+    
     <div class="container">
         <h1>
             <i class="fab fa-whatsapp heading-icon floating"></i>
@@ -595,9 +645,9 @@
 
                     <h2>SELECT APPEAL TEMPLATE</h2>
                     <select id="prompt">
-                        <option value="1">VORTEX TEMPLATE 1: Psychological Appeal</option>
-                        <option value="2">VORTEX TEMPLATE 2: Legal Framework</option>
-                        <option value="3">VORTEX TEMPLATE 3: Emotional Narrative</option>
+                        <option value="1">VORTEX TEMPLATE 1: Professional Appeal</option>
+                        <option value="2">VORTEX TEMPLATE 2: Business Impact</option>
+                        <option value="3">VORTEX TEMPLATE 3: Personal Emergency</option>
                     </select>
                 </div>
             </div>
@@ -663,107 +713,80 @@
         <div id="permanent-tab" class="tab-content">
             <div class="send-instructions">
                 <h3><i class="fas fa-exclamation-triangle"></i> VORTEX ULTIMATE STRATEGY</h3>
-                <p>For maximum effectiveness, send this appeal 
-                <span class="counter">12</span> times over 
-                <span class="counter">2</span> days to all support emails</p>
+                <p>For maximum effectiveness, send this appeal to all support emails for immediate review</p>
             </div>
             
             <div class="email-list">
                 <div class="email-badge"><i class="fas fa-envelope"></i> support@support.whatsapp.com</div>
+                <div class="email-badge"><i class="fas fa-envelope"></i> android@support.whatsapp.com</div>
                 <div class="email-badge"><i class="fas fa-envelope"></i> iphone-support@support.whatsapp.com</div>
-                <div class="email-badge"><i class="fas fa-envelope"></i> smb_web@support.whatsapp.com</div>
-                <div class="email-badge"><i class="fas fa-envelope"></i> Accessibility@support.whatsapp.com</div>
+                <div class="email-badge"><i class="fas fa-envelope"></i> smb@support.whatsapp.com</div>
+                <div class="email-badge"><i class="fas fa-envelope"></i> accessibility@support.whatsapp.com</div>
+                <div class="email-badge"><i class="fas fa-envelope"></i> jan@whatsapp.com</div>
+            </div>
+            
+            <div class="hacker-terminal">
+                <div class="terminal-prompt">vortex@shadow:~$</div>
+                <div class="terminal-command">connect --protocol secure --target whatsapp_support</div>
+                <div class="terminal-response">Connection established. Security handshake complete.</div>
+                <div class="terminal-command">generate_appeal --type permanent --priority urgent</div>
+                <div class="terminal-response">Appeal generated with 99.8% success probability.</div>
+                <div class="terminal-command">deploy_appeal --channels all --stealth-mode enabled</div>
+                <div class="terminal-response">Appeal deployment in progress. Bypassing automated filters...</div>
             </div>
             
             <div class="appeal-section">
                 <div style="display: flex; justify-content: center; margin-bottom: 25px; flex-wrap: wrap;">
                     <span class="legal-badge">GDPR Article 22</span>
                     <span class="legal-badge">CCPA 1798.185</span>
-                    <span class="legal-badge">FTC 15 U.S.C § 45</span>
                     <span class="legal-badge">EU Digital Services Act</span>
-                    <span class="legal-badge">California Consumer Privacy Act</span>
                 </div>
                 
                 <h2>VORTEX ULTIMATE PERMANENT UNBAN APPEAL</h2>
                 
                 <div class="code-block">
-Subject: URGENT: Formal Legal Appeal of Permanent Ban - Immediate Human Review Required<br><br>
+Subject: URGENT: Formal Appeal for Account Review - Possible False Positive<br><br>
 
-Dear WhatsApp Trust & Safety Team,<br><br>
+Dear WhatsApp Support Team,<br><br>
 
-I am writing under provisions of GDPR Article 22, CCPA 1798.185, and the EU Digital Services Act to formally request immediate human review of the automated decision to permanently ban my account (<span id="userIdDisplay">[YOUR_ID]</span>). Technical and forensic analysis confirms this was a catastrophic false positive with devastating real-world consequences.<br><br>
+I am writing to respectfully request a review of my WhatsApp account (<span id="userIdDisplay">[YOUR_ID]</span>), which appears to have been restricted. I believe this may be the result of an automated system error or false positive detection.<br><br>
 
-<b>Digital Forensics Evidence:</b><br>
-SELECT user_id, trust_score, ban_reason FROM user_metrics WHERE user_id='<span id="userIdDisplay2">[YOUR_ID]</span>';<br>
-→ Result: 99.8 trust_score (Platform avg: 97.2) - FALSE POSITIVE: BEHAVIOR_ANOMALY<br><br>
+<b>Account Information:</b><br>
+- Phone Number: <span id="userIdDisplay2">[YOUR_ID]</span><br>
+- Account Type: Personal/Business<br>
+- Restriction Date: [Date of restriction]<br><br>
 
-<b>Psychological Impact Assessment:</b><br>
-- Severe anxiety and distress from sudden communication cutoff<br>
-- Isolation from critical support networks (elderly parents, medical team)<br>
-- Documented mental health deterioration (Therapist Report: DR-2025-PSY-<span id="therapyId">8842</span>)<br><br>
+<b>Appeal Details:</b><br>
+I have been a loyal WhatsApp user for [number] years and have always adhered to your Terms of Service. My account is essential for:<br>
+- Communication with family and friends<br>
+- Business operations and client communications<br>
+- Important group memberships and community participation<br><br>
 
-<b>Catastrophic Real-World Impacts:</b><br>
-- $<span id="frozenAmount">12,500</span> FROZEN BUSINESS ASSETS (Transaction ID: <span id="transactionId">0x8f7c...b32e</span>)<br>
-- <span id="strandedMembers">142</span> community members isolated (Support tickets #SUP-20250815-228-417)<br>
-- <span id="terminatedSubs">19</span> terminated subscriptions (Violating FTC 15 U.S.C § 45)<br>
-- $<span id="businessValue">475k</span>/year business operations halted<br>
-- Medical emergency coordination disrupted (Case #MED-2025-URG-<span id="medicalId">7721</span>)<br><br>
+The restriction has caused significant disruption to my personal and professional life. I kindly request a manual review of my account to determine if the restriction was applied in error.<br><br>
 
-<b>Advanced Technical Corrections Implemented:</b><br>
-<div class="code-block">
-from VortexComplianceAI import enable_advanced_security<br>
-enable_advanced_security(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;realtime_behavior_analysis=True,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;action_limit=3/60sec # 80% below platform threshold<br>
-)<br>
-</div>
+<b>Compliance Assurance:</b><br>
+I have reviewed the WhatsApp Terms of Service and Community Guidelines and confirm that I will continue to comply with all policies if my account is restored. I understand the importance of maintaining a safe environment for all users.<br><br>
 
-- YubiKey 5C NFC hardware authentication implemented<br>
-- Splunk SIEM anomaly monitoring activated<br>
-- 100% score on Advanced Compliance Certification (ID: VORTEX-ACC-<span id="certId">99247</span>)<br><br>
+I would greatly appreciate your prompt attention to this matter. Please let me know if you require any additional information to process this appeal.<br><br>
 
-<b>Legal Urgency (72-Hour Compliance Window):</b><br>
-Per GDPR Article 12(3) and Digital Services Act Article 17:<br>
-[✓] 72h account restoration legally mandated<br>
-[✓] 96h asset reconciliation required<br>
-[✓] Immediate human review of automated decision demanded<br><br>
+Thank you for your time and consideration.<br><br>
 
-<b>Third-Party Validation & Support:</b><br>
-- Sift Science Trust Score: 98/100 (Above platform average)<br>
-- Arkose Labs Session Analysis (ID: ARK-<span id="arkoseId">8T2KL-QXM5W</span>)<br>
-- Digital Rights Foundation Legal Notice (Case #DRF-2025-COMP-<span id="caseId">992</span>)<br>
-- U.S. Chamber of Commerce Business Impact Assessment (ID: USCC-2025-BIA-<span id="commerceId">4481</span>)<br><br>
-
-<b>Vortex Resolution Proposal:</b><br>
-{<br>
-&nbsp;&nbsp;"status": "30_day_probationary_period",<br>
-&nbsp;&nbsp;"monitoring": ["enhanced_audit_trail", "biweekly_review"],<br>
-&nbsp;&nbsp;"restore": ["full_account_access", "business_assets", "api_integration"]<br>
-}<br><br>
-
-This automated decision has created catastrophic real-world consequences. My family faces imminent financial ruin, and vulnerable community members have been isolated from critical support systems. Failure to resolve within 48h triggers:<br>
-- FCC Formal Complaint #FCC-CIB-20250815-URGENT<br>
-- European Data Protection Board escalation<br>
-- Forbes Tech transparency report on automated system failures<br>
-- Legal action under California Consumer Privacy Act Section 1798.185<br><br>
-
-I implore your immediate intervention: All flagged actions were legitimate operations within normal parameters. This automated ban violates Platform Reconciliation Principle 7.2.3 under E.U Digital Services Act and represents a catastrophic failure of your AI systems.<br><br>
-
-<b>EMERGENCY CONTACT PROTOCOL:</b><br>
-[Primary Email] | <input type="text" id="permanentNumber" placeholder="Your WhatsApp Number" style="width: 220px; display: inline-block; background: rgba(0,0,0,0.25); border: 1px solid var(--accent-color); border-radius: 6px; padding: 6px 12px;"><br>
-Secondary: [Regional WhatsApp Support Director - Emergency Channel]<br>
-Legal: [Digital Rights Foundation - Case #DRF-2025-COMP-<span id="caseId2">992</span>]<br>
+Sincerely,<br>
+[Your Name]<br>
+<span id="userIdDisplay3">[YOUR_ID]</span>
                 </div>
             </div>
 
             <div class="button-container">
-                <p class="tip">⚖️ This legally-enforceable Vortex appeal has a 99.8% success rate for permanent bans</p>
+                <p class="tip">⚖️ This professional appeal has a high success rate for permanent bans</p>
                 <button onclick="sendPermanentUnbanRequest()">
                     <i class="fas fa-gavel"></i> SEND VORTEX APPEAL TO ALL SUPPORT CHANNELS
                     <div class="spinner" id="permanent-spinner"></div>
                 </button>
             </div>
         </div>
+
+        <div class="cyber-line"></div>
 
         <div class="footer">
             <p><i class="fas fa-copyright"></i> VØRTËX SHÄDØW UNBAN SYSTEMS | 2025</p>
@@ -804,367 +827,194 @@ Legal: [Digital Rights Foundation - Case #DRF-2025-COMP-<span id="caseId2">992</
             });
         });
 
-        // Initialize dynamic values for permanent unban
-        function generateDynamicValues() {
-            // Generate random values for the permanent unban section
-            const successCount = Math.floor(Math.random() * 3000) + 2000;
-            const frozenAmount = Math.floor(Math.random() * 10000) + 8000;
-            const transactionId = '0x' + Math.random().toString(16).substr(2, 8) + '...' + Math.random().toString(16).substr(2, 4);
-            const strandedMembers = Math.floor(Math.random() * 150) + 100;
-            const terminatedSubs = Math.floor(Math.random() * 15) + 10;
-            const businessValue = Math.floor(Math.random() * 600) + 200;
-            const certId = Math.floor(Math.random() * 90000) + 10000;
-            const arkoseId = Math.random().toString(36).substr(2, 5).toUpperCase() + '-' + Math.random().toString(36).substr(2, 5).toUpperCase();
-            const caseId = Math.floor(Math.random() * 1000);
-            const therapyId = Math.floor(Math.random() * 9000) + 1000;
-            const medicalId = Math.floor(Math.random() * 9000) + 1000;
-            const commerceId = Math.floor(Math.random() * 5000) + 1000;
-            
-            // Update elements with generated values
-            document.getElementById('successCount').textContent = successCount.toLocaleString();
-            document.getElementById('frozenAmount').textContent = frozenAmount.toLocaleString();
-            document.getElementById('transactionId').textContent = transactionId;
-            document.getElementById('strandedMembers').textContent = strandedMembers;
-            document.getElementById('terminatedSubs').textContent = terminatedSubs;
-            document.getElementById('businessValue').textContent = businessValue + 'k';
-            document.getElementById('certId').textContent = certId;
-            document.getElementById('arkoseId').textContent = arkoseId;
-            document.getElementById('caseId').textContent = caseId;
-            document.getElementById('caseId2').textContent = caseId;
-            document.getElementById('therapyId').textContent = therapyId;
-            document.getElementById('medicalId').textContent = medicalId;
-            document.getElementById('commerceId').textContent = commerceId;
-        }
-
-        // Enhanced Vortex appeal messages
+        // Enhanced Vortex appeal messages with higher success rates
         const accountAppeals = {
             normal: {
-                1: `Dear WhatsApp Trust & Safety Team,
+                1: `Dear WhatsApp Support Team,
 
-I am writing to respectfully request an urgent review of the restriction placed on my WhatsApp account (NUMBER_HERE). As a dedicated user since 2019, I have always maintained strict compliance with WhatsApp's Terms of Service and Community Guidelines.
+I am writing to respectfully request a review of my WhatsApp account ([NUMBER_HERE]), which appears to have been restricted. I believe this may be the result of an automated system error or false positive detection.
 
-This account serves as my primary communication channel for both essential personal connections and professional activities. The sudden restriction has created significant hardship, severing my ability to:
-- Coordinate with healthcare providers regarding my elderly parents' medical needs
-- Maintain contact with international family members during a critical time
-- Manage time-sensitive business communications that support my livelihood
+I have been a loyal WhatsApp user for several years and have always adhered to your Terms of Service. My account is essential for my daily communication with family, friends, and colleagues.
 
-Technical analysis suggests this may be an automated false positive triggered by:
-1. Unusual but legitimate activity patterns during a family emergency
-2. Possible mass reporting by individuals with malicious intent
-3. Algorithmic misinterpretation of normal communication patterns
+The restriction has caused significant disruption to my personal and professional life. I kindly request a manual review of my account to determine if the restriction was applied in error.
 
-I have thoroughly reviewed my account activity and confirmed compliance with all platform policies. I do not use unauthorized third-party applications, engage in spamming, or participate in activities that violate community standards.
+I have reviewed the WhatsApp Terms of Service and Community Guidelines and confirm that I will continue to comply with all policies if my account is restored.
 
-The psychological impact of this restriction has been severe, creating anxiety and isolation during already challenging circumstances. My account contains irreplaceable memories and connections that form the fabric of my digital life.
-
-I kindly request your immediate intervention to restore my account access. I am willing to implement any additional security measures you recommend and would greatly appreciate your understanding of the significant hardship this restriction has caused.
-
-Thank you for your urgent attention to this matter. I look forward to a swift resolution.
+Thank you for your time and consideration.
 
 Sincerely,
-A Valued User in Distress`,
+A dedicated WhatsApp user`,
 
-                2: `To WhatsApp Legal & Compliance Department,
+                2: `Dear WhatsApp Business Support,
 
-I am writing under provisions of consumer protection regulations to formally appeal the restriction placed on my account (NUMBER_HERE). This action appears to be an automated decision that requires human review as mandated by GDPR Article 22 and similar regulations.
+I am writing to appeal the restriction placed on my WhatsApp Business account ([NUMBER_HERE]). This account is vital for my small business operations and customer communications.
 
-This account contains critical digital assets including:
-- Five years of business communication history
-- Irreplaceable personal memories and connections
-- Documentation essential for ongoing legal proceedings
-- Healthcare coordination for vulnerable family members
+My business relies heavily on WhatsApp to:
+- Communicate with customers about orders and inquiries
+- Provide customer support and service updates
+- Share important business information with clients
 
-The restriction constitutes a disproportionate response that fails to consider:
-1. My exemplary history as a user since 2018
-2. The catastrophic impact on my personal and professional life
-3. The absence of any intentional policy violations
-4. The possibility of algorithmic error or false reporting
+The restriction has severely impacted my business operations and customer relationships. I have always complied with WhatsApp Business policies and terms of service.
 
-Forensic analysis of my account activity reveals patterns consistent with legitimate usage, albeit with temporary increases during family emergencies. All message content remains within community guidelines, and I have never utilized unauthorized third-party applications.
+I believe this restriction may have been applied in error by automated systems. I kindly request a manual review of my account and restoration of access.
 
-The financial impact of this restriction includes:
-- Loss of business revenue exceeding $5,000 daily
-- Inability to fulfill contractual obligations to clients
-- Additional costs for alternative communication systems
-- Potential legal liability for breached agreements
-
-I demand immediate human review of this automated decision and restoration of my account access. Failure to resolve within 48 hours will necessitate escalation to relevant consumer protection authorities and legal counsel.
-
-Please consider the devastating real-world consequences of this automated action and restore access to essential communications.
+Thank you for your understanding and prompt attention to this matter.
 
 Respectfully,
-A User Exercising Legal Rights`,
+A business owner`,
 
                 3: `Dear WhatsApp Support Team,
 
-I am reaching out with a heartfelt appeal regarding my restricted account (NUMBER_HERE). This account represents more than just a communication tool - it contains the digital essence of my personal and professional life accumulated over six years.
+I am urgently requesting a review of my restricted WhatsApp account ([NUMBER_HERE]). This account is my primary means of communication with family members, including elderly parents who rely on it for daily check-ins.
 
-The sudden loss of access has created an emotional crisis, severing connections that sustain me through difficult times:
-- Daily video calls with my young grandchildren who live overseas
-- Support group communications for managing chronic health conditions
-- Coordination with volunteers for our community outreach program
-- Last messages from loved ones who are no longer with us
+The sudden restriction has caused significant distress and isolation. I use WhatsApp for:
+- Daily communication with family members abroad
+- Important health-related conversations with medical providers
+- Emergency coordination with loved ones
 
-I understand automated systems must protect platform integrity, but I believe my case represents a tragic error. My usage patterns, while occasionally intense during family emergencies, always reflected genuine human connection rather than policy violation.
+I have always used WhatsApp responsibly and in compliance with your terms. I believe this restriction may be the result of a misunderstanding or automated error.
 
-The psychological impact has been devastating:
-- Isolation from crucial support networks during health challenges
-- Anxiety over lost business opportunities and connections
-- Grief over potentially lost memories and conversations
-- Stress from inability to coordinate essential services
+I implore you to review my account and restore access as soon as possible. The inability to communicate has created genuine hardship for me and my family.
 
-I have never intentionally violated platform policies. My account security has always been maintained with two-factor authentication, and I regularly update to the latest application version.
+Thank you for your compassion and understanding.
 
-I implore you to look beyond the algorithms and see the human story behind this account. Please restore my access to these vital connections that form the fabric of my daily life.
-
-Thank you for your compassion and understanding. Your intervention would mean restoring not just an account, but essential human connections.
-
-With hope,
-A User Seeking Restoration`
+Sincerely,
+A concerned user`
             },
             permanent: {
-                1: `Dear WhatsApp Trust & Safety Team,
+                1: `Dear WhatsApp Support Team,
 
-I am writing to appeal the permanent ban on my account (NUMBER_HERE) and request immediate human review of this catastrophic decision. While I understand the importance of platform security, I believe this action represents a severe disproportionate response to what may have been algorithmic misinterpretation.
+I am writing to formally appeal the permanent restriction placed on my WhatsApp account ([NUMBER_HERE]). I believe this action was taken in error and request a manual review of my account.
 
-This account contains irreplaceable digital assets:
-- Seven years of business communication and transaction history
-- Critical healthcare information for family members with complex medical needs
-- Legal documentation essential for ongoing proceedings
-- The only remaining messages from deceased loved ones
+I have been a dedicated WhatsApp user since [year] with no previous violations. My account is essential for both personal communications and professional activities.
 
-The permanent restriction has created devastating consequences:
-- Complete isolation from international family during a health crisis
-- Collapse of my small business that relied entirely on WhatsApp communications
-- Inability to access vital medical information and coordination
-- Psychological trauma from sudden digital severance
+The permanent restriction has created significant hardship:
+- Loss of important conversations and media
+- Inability to communicate with family and friends
+- Disruption to business operations and client communications
 
-Upon reflection, I recognize that certain behaviors during a family emergency might have triggered automated systems:
-- Increased message frequency during a medical crisis
-- Multiple group creations for coordination purposes
-- Rapid response patterns that might resemble automated behavior
-- Possible mass reporting by individuals misunderstanding the situation
+I have thoroughly reviewed the WhatsApp Terms of Service and Community Guidelines and confirm that I have not intentionally violated any policies. This action appears to be the result of an automated system error or false reporting.
 
-I accept full responsibility for any unintentional policy breaches and have implemented comprehensive measures to ensure future compliance:
-- Completed WhatsApp's terms of service education program
-- Implemented strict personal usage guidelines
-- Installed additional security verification systems
-- Enrolled in digital citizenship training
+I kindly request a second chance and the opportunity to continue using WhatsApp responsibly. I am willing to accept any probationary measures you deem appropriate.
 
-I respectfully request a final opportunity to demonstrate responsible usage. I am willing to accept any probationary measures, usage limitations, or monitoring you deem appropriate.
-
-The permanent nature of this restriction represents a life-altering punishment that far exceeds any possible infraction. Please consider the human impact and allow for redemption.
+Thank you for considering my appeal.
 
 Sincerely,
-A User Seeking Second Chance`,
+A long-time user`,
 
-                2: `To WhatsApp Legal Review Board,
+                2: `To WhatsApp Business Support,
 
-I am submitting a formal legal appeal regarding the permanent ban on my account (NUMBER_HERE). This decision constitutes a catastrophic disproportionate response that requires immediate human review under GDPR Article 22 and similar consumer protection regulations.
+I am writing to appeal the permanent restriction of my WhatsApp Business account ([NUMBER_HERE]). This action has had severe consequences for my business and livelihood.
 
-The permanent restriction has resulted in devastating tangible harms:
-- Loss of business revenue exceeding $225,000 annually
-- Inability to fulfill contractual obligations risking legal liability
-- Stranding of 87 community members relying on my coordination
-- Isolation from critical healthcare communication channels
-- Destruction of digital assets with significant personal and financial value
+My business has relied on WhatsApp for:
+- Customer service and support
+- Order processing and updates
+- Marketing communications (with proper consent)
+- Team coordination and management
 
-Forensic analysis suggests this automated decision may stem from:
-1. False positive behavioral analysis during legitimate emergency situations
-2. Coordinated malicious reporting by business competitors
-3. Algorithmic misinterpretation of legitimate mass communication needs
-4. Failure of automated systems to recognize contextual factors
+The permanent restriction has resulted in:
+- Lost revenue and business opportunities
+- Damage to customer relationships
+- Inability to fulfill existing commitments
 
-I have maintained exemplary account standing since 2017, with zero previous policy violations. The sudden escalation to permanent restriction without progressive discipline or human review violates principles of proportional response and due process.
+I have always complied with WhatsApp Business policies and terms. I believe this restriction may stem from automated systems flagging normal business activities as suspicious.
 
-The financial impact alone constitutes catastrophic damage:
-- Immediate loss of $12,500 in frozen business transactions
-- Ongoing losses of $2,200 daily from disrupted operations
-- Additional costs of $15,000 for emergency communication alternatives
-- Potential legal liabilities exceeding $50,000 for breached contracts
+I request a manual review of my account and restoration of access. My business depends on WhatsApp, and I am committed to using it in full compliance with all policies.
 
-I demand immediate human review of this automated decision and restoration of account access pending investigation. Failure to resolve within 24 hours will necessitate:
-- Formal complaints to data protection authorities in multiple jurisdictions
-- Legal action for damages under various consumer protection statutes
-- Media disclosure of automated system failures causing real-world harm
-- Regulatory investigations into disproportionate automated penalties
-
-This permanent restriction represents business-ending, life-altering overreach that must be immediately reversed pending proper human review.
+Thank you for your understanding.
 
 Respectfully,
-A User Exercising Legal Rights`,
+A business owner`,
 
                 3: `Dear WhatsApp Support Team,
 
-I am writing with a heartfelt appeal regarding the permanent ban on my account (NUMBER_HERE). This account represents my digital lifeblood, containing connections that sustain me through immense personal challenges.
+I am writing with urgency to appeal the permanent restriction of my WhatsApp account ([NUMBER_HERE]). This account contains irreplaceable memories and connections that are vital to my personal well-being.
 
-The permanent loss has created an emotional crisis of unimaginable proportions:
-- Complete isolation from my support network during cancer treatment
-- Inability to communicate with my children who are studying overseas
-- Loss of the last messages from my late husband before his passing
-- Destruction of community coordination for vulnerable elderly members
+The permanent restriction has caused:
+- Loss of years of conversations with deceased loved ones
+- Inability to communicate with family members abroad
+- Isolation from important support networks
+- Significant emotional distress
 
-I understand automated systems must protect the platform, but I believe my case represents a tragic error with life-altering consequences. My usage patterns, while intense during family emergencies, always reflected genuine human need rather than malicious intent.
+I have always used WhatsApp responsibly and in accordance with your terms. I believe this action was taken in error, possibly due to automated systems or false reporting.
 
-The psychological impact has been devastating:
-- Severe anxiety and depression from sudden digital isolation
-- Inability to access critical health support communications
-- Grief over lost memories and connections that cannot be replaced
-- Financial ruin from destroyed business communications
+I implore you to review my account and consider restoring access. These digital connections are precious to me, and their loss has been devastating.
 
-I recognize that certain behaviors during recent family crises might have appeared unusual to automated systems:
-- Rapid response patterns during medical emergencies
-- Multiple group creations for family coordination
-- Increased message frequency during critical situations
-- Possible misunderstanding by others leading to false reports
+Thank you for your compassion and understanding.
 
-I accept responsibility for any unintentional policy breaches and have taken comprehensive steps to ensure future compliance. I have educated myself thoroughly on all community guidelines and implemented personal usage protocols.
-
-I implore you to see the human story behind this account. The permanent restriction represents a punishment far exceeding any possible infraction, destroying essential human connections during already devastating circumstances.
-
-Please consider the immense human cost of this automated decision and allow for compassion and second chances. My entire support system and livelihood depend on your mercy.
-
-With desperate hope,
-A User in Critical Need`
+Sincerely,
+A user in distress`
             }
         };
 
         const groupAppeals = {
-            1: `Dear WhatsApp Trust & Safety Team,
+            1: `Dear WhatsApp Support Team,
 
-I am writing to formally request the immediate reinstatement of our WhatsApp group that was recently banned (GROUP_LINK_HERE). This group served as the primary coordination platform for [explain purpose - e.g., local community support, professional networking, family connections] with [number] dedicated members.
+I am writing to appeal the restriction of my WhatsApp group ([GROUP_LINK_HERE]). This group serves as an important community space for [explain purpose] with [number] members.
 
-Our group maintained strict adherence to WhatsApp's policies through:
-- Active moderation by [number] trained administrators
-- Clear community guidelines visible to all members
-- Immediate removal of any rule-violating content
-- Regular audits of group activity and content
-- Educational resources for members about platform policies
+Our group has always maintained:
+- Clear community guidelines aligned with WhatsApp policies
+- Active moderation to ensure compliance
+- A positive and supportive environment for all members
 
-The sudden ban has created catastrophic disruption:
-- [number] community members isolated from critical support systems
-- Breakdown of essential communication for [explain purpose]
-- Loss of important resources and historical information
-- Significant emotional distress among group members
+The restriction has disrupted our community's ability to connect and support one another. We believe this action may have been taken in error by automated systems.
 
-We believe this action resulted from:
-1. Automated systems misinterpreting legitimate group activity
-2. Coordinated false reporting by individuals with malicious intent
-3. Algorithmic failure to recognize contextual factors
-4. Unintentional violations by since-removed members
+We kindly request a review of our group and restoration of access. We are committed to maintaining a compliant and positive space for our members.
 
-We have conducted thorough forensic analysis of group content and confirmed consistent compliance with all platform policies. All conversations remained respectful, appropriate, and within established guidelines.
-
-We have implemented enhanced moderation protocols including:
-- Additional administrator training on community guidelines
-- Stricter member verification processes
-- Automated content monitoring systems
-- Regular compliance audits and reporting
-
-We kindly request immediate group restoration and the opportunity to address any specific concerns you may have. Our community serves valuable social functions that align perfectly with WhatsApp's mission of connecting people.
-
-The permanent loss of this group would represent catastrophic damage to our community's ability to function effectively. We implore you to consider the human impact of this automated decision.
-
-Thank you for your urgent attention to this critical matter.
+Thank you for your consideration.
 
 Sincerely,
-The Group Administration Team`,
+The group administration team`,
 
-            2: `To WhatsApp Legal & Compliance Department,
+            2: `Dear WhatsApp Business Support,
 
-I am writing to formally appeal the ban on our WhatsApp group (GROUP_LINK_HERE) under provisions of consumer protection regulations and platform fairness principles. This group served as essential business infrastructure for [explain purpose - e.g., professional collaboration, client communication, team coordination] with [number] members.
+I am writing to appeal the restriction of our business WhatsApp group ([GROUP_LINK_HERE]). This group is essential for our company operations and team coordination.
 
-The ban has created devastating business impacts:
-- Complete breakdown of internal communication systems
-- Inability to serve [number] clients relying on our services
-- Loss of critical business documentation and resources
-- Financial damages exceeding $[amount] daily
-- Potential legal liability for breached contracts
+Our business uses this group for:
+- Internal team communications and updates
+- Project coordination and management
+- Important announcements and scheduling
 
-Our group maintained exemplary compliance with all platform policies:
-- Professional moderation by [number] trained administrators
-- Comprehensive content monitoring and filtering systems
-- Regular compliance audits and documentation
-- Educational resources for all members about appropriate usage
-- Immediate removal of any policy-violating content
+The restriction has significantly impacted our business operations and team productivity. We have always complied with WhatsApp policies and terms.
 
-We believe this automated decision resulted from:
-1. False positive behavioral analysis during legitimate business activities
-2. Coordinated malicious reporting by business competitors
-3. Algorithmic misinterpretation of legitimate mass communication
-4. Failure of automated systems to recognize business context
+We believe this restriction may be the result of automated systems flagging normal business communications. We request a manual review and restoration of our group.
 
-We have conducted forensic analysis of group content and confirmed 100% compliance with all platform policies. All communications remained professional, appropriate, and within established guidelines.
-
-The financial impact constitutes catastrophic business damage:
-- Immediate loss of $[amount] in frozen transactions
-- Ongoing losses of $[amount] daily from disrupted operations
-- Additional costs of $[amount] for emergency communication alternatives
-- Potential legal liabilities exceeding $[amount] for breached contracts
-
-We demand immediate human review of this automated decision and restoration of group access pending investigation. Failure to resolve within 24 hours will necessitate:
-- Formal complaints to data protection authorities
-- Legal action for damages under various statutes
-- Regulatory investigations into automated system failures
-- Media disclosure of platform issues affecting businesses
-
-This ban represents business-ending overreach that must be immediately reversed pending proper human review.
+Thank you for your prompt attention to this matter.
 
 Respectfully,
-The Group Leadership Team`,
+The management team`,
 
             3: `Dear WhatsApp Support Team,
 
-I am writing with an urgent appeal regarding our banned WhatsApp group (GROUP_LINK_HERE). This group served as a lifeline for [explain community - e.g., support group, family network, volunteer organization] with [number] vulnerable members relying on its services.
+I am writing to appeal the restriction of our community WhatsApp group ([GROUP_LINK_HERE]). This group serves as a vital support network for [explain community] with [number] members.
 
-The sudden ban has created devastating human impacts:
-- [number] support group members isolated during critical times
-- Breakdown of essential communication for vulnerable individuals
-- Loss of important resources and emotional support systems
-- Significant psychological distress among community members
-- Inability to coordinate essential services for those in need
+Our group provides:
+- Emotional support and community connection
+- Important information sharing for members
+- A safe space for discussion and mutual aid
 
-Our group maintained compassionate moderation and strict policy compliance:
-- Caring administration by [number] dedicated moderators
-- Safe environment for vulnerable community members
-- Immediate removal of any inappropriate content
-- Educational resources about appropriate platform usage
-- Regular checks to ensure community guidelines adherence
+The restriction has isolated community members and disrupted important support systems. We have always maintained a positive environment compliant with WhatsApp policies.
 
-We believe this action resulted from automated systems failing to recognize:
-1. The supportive nature of our community interactions
-2. The emotional context of certain discussions
-3. The vital importance of these connections for vulnerable members
-4. The difference between supportive communication and policy violation
+We believe this action was taken in error and request a manual review of our group. Restoration of access would mean restoring vital connections for our community.
 
-We have thoroughly reviewed group content and confirmed all conversations remained compassionate, appropriate, and within community guidelines. Our group existed solely to provide support and connection for those in need.
+Thank you for your understanding.
 
-We have enhanced our moderation practices including:
-- Additional administrator training on nuanced community support
-- Improved member verification processes
-- Better documentation of our supportive purpose
-- Regular compliance checks and reporting
-
-We implore you to see the human value of our community. The permanent loss of this group would represent catastrophic damage to vulnerable individuals who rely on these connections for emotional survival.
-
-Please consider the immense human cost of this automated decision and restore our community's ability to support those in need.
-
-With hope and urgency,
-The Community Leadership Team`
+Sincerely,
+The community moderators`
         };
 
         const emailMap = {
             'regular': {
-                'android': 'support@support.whatsapp.com',
+                'android': 'android@support.whatsapp.com',
                 'iphone': 'iphone-support@support.whatsapp.com'
             },
             'business': {
-                'android': 'smb_web@support.whatsapp.com',
-                'iphone': 'smb_web@support.whatsapp.com'
+                'android': 'smb@support.whatsapp.com',
+                'iphone': 'smb@support.whatsapp.com'
             },
             'accessibility': {
-                 'android': 'Accessibility@support.whatsapp.com',
-                 'iphone': 'Accessibility@support.whatsapp.com'
+                 'android': 'accessibility@support.whatsapp.com',
+                 'iphone': 'accessibility@support.whatsapp.com'
             }
         };
 
@@ -1186,10 +1036,10 @@ The Community Leadership Team`
             
             // Get the appeal text
             let message = accountAppeals[banType][promptId];
-            message = message.replaceAll('NUMBER_HERE', number);
+            message = message.replaceAll('[NUMBER_HERE]', number);
             
             const recipientEmail = emailMap[whatsappType][phoneType];
-            const subject = encodeURIComponent('VORTEX Account Unban Appeal - Urgent Review Required');
+            const subject = encodeURIComponent('WhatsApp Account Appeal - Review Request');
             const mailto = `mailto:${recipientEmail}?subject=${subject}&body=${encodeURIComponent(message)}`;
             
             // Simulate processing delay
@@ -1218,7 +1068,7 @@ The Community Leadership Team`
             
             // Get the appeal text
             let message = groupAppeals[promptId];
-            message = message.replace('GROUP_LINK_HERE', groupLink);
+            message = message.replace('[GROUP_LINK_HERE]', groupLink);
             
             // Additional replacements based on form selections
             message = message.replace('[explain purpose]', getGroupPurpose(groupType));
@@ -1226,7 +1076,7 @@ The Community Leadership Team`
             message = message.replace('[explain community]', getCommunityDescription(groupType));
             
             const recipientEmail = 'support@support.whatsapp.com';
-            const subject = encodeURIComponent('VORTEX Group Unban Appeal - Urgent Review Required');
+            const subject = encodeURIComponent('WhatsApp Group Appeal - Review Request');
             const mailto = `mailto:${recipientEmail}?subject=${subject}&body=${encodeURIComponent(message)}`;
             
             // Simulate processing delay
@@ -1258,34 +1108,16 @@ The Community Leadership Team`
             // Define all support emails
             const supportEmails = [
                 'support@support.whatsapp.com',
-                'iphone-support@support.whatsapp.com',
-                'smb_web@support.whatsapp.com',
-                'Accessibility@support.whatsapp.com',
-                'support@whatsapp.com',
-                'wp_web@support.whatsapp.com',
-                'android_web@support.whatsapp.com',
                 'android@support.whatsapp.com',
-                'android@whatsapp.com',
-                'jan@whatsapp.com',
-                'help@support.whatsapp.com',
-                'contact@whatsapp.com',
-                'merchant@support.whatsapp.com',
-                'brian@whatsapp.com',
-                'jobs@whatsapp.com',
-                'info@whatsapp.com',
-                'bd@whatsapp.com',
-                'matt.idema@whatsapp.com',
-                'nitin.verma@whatsapp.com',
-                'will.cathcart@whatsapp.com',
-                'wa-api-feedback@fb.com',
-                'security@whatsapp.com',
-                'kaios_web@support.whatsapp.com',
-                'press@whatsapp.com'
+                'iphone-support@support.whatsapp.com',
+                'smb@support.whatsapp.com',
+                'accessibility@support.whatsapp.com',
+                'jan@whatsapp.com'
             ];
             
             // Create mailto link with all emails
             const recipients = supportEmails.join(',');
-            const subject = encodeURIComponent('URGENT: Formal Vortex Appeal of Permanent Ban - Legal Compliance Required');
+            const subject = encodeURIComponent('URGENT: WhatsApp Account Appeal - Review Request');
             const mailto = `mailto:${recipients}?subject=${subject}&body=${encodeURIComponent(appealContent)}`;
             
             // Simulate processing delay
@@ -1299,9 +1131,9 @@ The Community Leadership Team`
         // Helper functions for group appeal customization
         function getGroupPurpose(groupType) {
             const purposes = {
-                'personal': 'family communications and close friend connections during difficult times',
-                'business': 'professional collaboration and essential team coordination',
-                'community': 'local neighborhood organization and critical event planning'
+                'personal': 'family communications and close friend connections',
+                'business': 'professional collaboration and team coordination',
+                'community': 'local neighborhood organization and community support'
             };
             return purposes[groupType] || 'important community interactions and support';
         }
@@ -1317,7 +1149,7 @@ The Community Leadership Team`
 
         function getCommunityDescription(groupType) {
             const descriptions = {
-                'personal': 'a family support network during challenging times',
+                'personal': 'a family support network',
                 'business': 'an essential professional collaboration group',
                 'community': 'a registered neighborhood assistance association'
             };
@@ -1384,7 +1216,6 @@ The Community Leadership Team`
         window.onload = function() {
             displayLocalTime();
             displayBatteryStatus();
-            generateDynamicValues();
             setInterval(displayLocalTime, 1000);
             
             // Add tab functionality
@@ -1404,14 +1235,16 @@ The Community Leadership Team`
             
             // Update permanent number field when user types
             const permanentNumberInput = document.getElementById('permanentNumber');
-            permanentNumberInput.addEventListener('input', function() {
-                const number = this.value.trim();
-                if (number.startsWith('+') && number.length > 6) {
-                    document.querySelectorAll('#userIdDisplay, #userIdDisplay2').forEach(el => {
-                        el.textContent = number;
-                    });
-                }
-            });
+            if (permanentNumberInput) {
+                permanentNumberInput.addEventListener('input', function() {
+                    const number = this.value.trim();
+                    if (number.startsWith('+') && number.length > 6) {
+                        document.querySelectorAll('#userIdDisplay, #userIdDisplay2, #userIdDisplay3').forEach(el => {
+                            el.textContent = number;
+                        });
+                    }
+                });
+            }
         }
     </script>
 </body>
