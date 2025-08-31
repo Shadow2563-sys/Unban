@@ -9,17 +9,17 @@
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
         
         :root {
-            --dark-bg: #0a0a1a;
-            --darker-bg: #050510;
+            --dark-bg: #0a0a0f;
+            --darker-bg: #050508;
             --accent-color: #6a00ff;
             --accent-secondary: #8e44ad;
             --accent-gradient: linear-gradient(135deg, #6a00ff, #8e44ad);
-            --card-bg: rgba(20, 15, 35, 0.6);
-            --input-bg: rgba(30, 20, 45, 0.4);
-            --subtle-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
-            --button-shadow: 0 4px 20px rgba(106, 0, 255, 0.5);
+            --card-bg: rgba(15, 10, 25, 0.85);
+            --input-bg: rgba(20, 15, 30, 0.6);
+            --subtle-shadow: 0 4px 25px rgba(0, 0, 0, 0.8);
+            --button-shadow: 0 4px 20px rgba(106, 0, 255, 0.7);
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-            --glow: 0 0 20px rgba(106, 0, 255, 0.6);
+            --glow: 0 0 20px rgba(106, 0, 255, 0.8);
             --neon-glow: 0 0 10px rgba(106, 0, 255, 0.8), 0 0 20px rgba(106, 0, 255, 0.6);
         }
 
@@ -50,22 +50,39 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(106, 0, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(106, 0, 255, 0.05) 1px, transparent 1px);
-            background-size: 30px 30px;
+                linear-gradient(rgba(106, 0, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(106, 0, 255, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
             z-index: -1;
             pointer-events: none;
         }
 
+        .scan-line {
+            position: fixed;
+            height: 4px;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            top: 0;
+            z-index: 9999;
+            animation: scan 4s linear infinite;
+            box-shadow: 0 0 15px var(--accent-color);
+        }
+
+        @keyframes scan {
+            0% { top: 0%; }
+            50% { top: 100%; }
+            100% { top: 0%; }
+        }
+
         .container {
             background: var(--card-bg);
-            border: 1px solid rgba(106, 0, 255, 0.4);
-            border-radius: 20px;
+            border: 1px solid rgba(106, 0, 255, 0.5);
+            border-radius: 16px;
             padding: 40px 35px;
             max-width: 950px;
             width: 100%;
             text-align: center;
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(12px);
             box-shadow: var(--subtle-shadow), var(--neon-glow);
             transition: var(--transition);
             position: relative;
@@ -140,6 +157,7 @@
             margin-top: 15px;
             margin-bottom: 20px;
             font-weight: 500;
+            text-shadow: 0 0 10px rgba(200, 162, 255, 0.5);
         }
 
         #dynamic-info {
@@ -232,8 +250,8 @@
             width: 100%;
             padding: 18px 20px;
             margin: 10px 0 18px;
-            border-radius: 16px;
-            border: 1px solid rgba(106, 0, 255, 0.4);
+            border-radius: 12px;
+            border: 1px solid rgba(106, 0, 255, 0.5);
             background: var(--input-bg);
             color: #f0e6ff;
             font-family: 'Poppins', sans-serif;
@@ -269,7 +287,7 @@
         select:focus, input:focus, textarea:focus {
             outline: none;
             border-color: var(--accent-color);
-            box-shadow: 0 0 0 4px rgba(106, 0, 255, 0.25);
+            box-shadow: 0 0 0 4px rgba(106, 0, 255, 0.25), var(--neon-glow);
         }
         
         button {
@@ -280,7 +298,7 @@
             background: var(--accent-gradient);
             color: white;
             border: none;
-            border-radius: 16px;
+            border-radius: 12px;
             transition: var(--transition);
             box-shadow: var(--button-shadow);
             display: flex;
@@ -307,7 +325,7 @@
         
         button:hover {
             transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(106, 0, 255, 0.6);
+            box-shadow: 0 10px 30px rgba(106, 0, 255, 0.8);
         }
         
         button:hover::after {
@@ -391,11 +409,12 @@
 
         .feature-card {
             background: rgba(106, 0, 255, 0.15);
-            border-radius: 18px;
+            border-radius: 16px;
             padding: 25px;
             margin: 20px 0;
             text-align: center;
-            border: 1px solid rgba(106, 0, 255, 0.4);
+            border: 1px solid rgba(106, 0, 255, 0.5);
+            box-shadow: var(--neon-glow);
         }
 
         .feature-card h3 {
@@ -416,10 +435,11 @@
 
         .stat {
             background: rgba(106, 0, 255, 0.2);
-            border-radius: 18px;
+            border-radius: 16px;
             padding: 18px;
             min-width: 140px;
             margin: 12px;
+            box-shadow: var(--neon-glow);
         }
 
         .stat-value {
@@ -456,23 +476,26 @@
             overflow-x: auto;
             border-left: 4px solid var(--accent-color);
             line-height: 1.6;
+            box-shadow: var(--neon-glow);
         }
 
         .appeal-section {
             background: rgba(35, 25, 55, 0.4);
-            border-radius: 18px;
+            border-radius: 16px;
             padding: 25px;
             margin: 25px 0;
-            border: 1px solid rgba(106, 0, 255, 0.3);
+            border: 1px solid rgba(106, 0, 255, 0.5);
+            box-shadow: var(--neon-glow);
         }
         
         .send-instructions {
             background: rgba(106, 0, 255, 0.2);
-            border-radius: 18px;
+            border-radius: 16px;
             padding: 18px;
             margin: 25px 0;
             text-align: center;
             border: 2px dashed var(--accent-color);
+            box-shadow: var(--neon-glow);
         }
         
         .send-instructions h3 {
@@ -495,6 +518,7 @@
             font-weight: bold;
             margin: 0 6px;
             animation: pulse 1.5s infinite;
+            box-shadow: var(--neon-glow);
         }
         
         @keyframes pulse {
@@ -519,6 +543,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            box-shadow: var(--neon-glow);
         }
         
         .email-badge i {
@@ -573,10 +598,30 @@
         .terminal-response {
             color: #bb86fc;
         }
+        
+        .number-input-container {
+            position: relative;
+        }
+        
+        .number-input-container input {
+            padding-left: 45px;
+        }
+        
+        .number-input-container::before {
+            content: '+';
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #c8a2ff;
+            font-size: 18px;
+            z-index: 2;
+        }
     </style>
 </head>
 <body>
     <div class="cyber-grid"></div>
+    <div class="scan-line"></div>
     
     <div class="container">
         <h1>
@@ -641,7 +686,9 @@
                 
                 <div class="form-right">
                     <h2>ENTER NUMBER</h2>
-                    <input type="text" id="number" placeholder="eg: +923xxxxxxxx">
+                    <div class="number-input-container">
+                        <input type="text" id="number" placeholder="923xxxxxxxx">
+                    </div>
 
                     <h2>SELECT APPEAL TEMPLATE</h2>
                     <select id="prompt">
@@ -832,7 +879,7 @@ Sincerely,<br>
             normal: {
                 1: `Dear WhatsApp Support Team,
 
-I am writing to respectfully request a review of my WhatsApp account ([NUMBER_HERE]), which appears to have been restricted. I believe this may be the result of an automated system error or false positive detection.
+I am writing to respectfully request a review of my WhatsApp account (+[NUMBER_HERE]), which appears to have been restricted. I believe this may be the result of an automated system error or false positive detection.
 
 I have been a loyal WhatsApp user for several years and have always adhered to your Terms of Service. My account is essential for my daily communication with family, friends, and colleagues.
 
@@ -847,7 +894,7 @@ A dedicated WhatsApp user`,
 
                 2: `Dear WhatsApp Business Support,
 
-I am writing to appeal the restriction placed on my WhatsApp Business account ([NUMBER_HERE]). This account is vital for my small business operations and customer communications.
+I am writing to appeal the restriction placed on my WhatsApp Business account (+[NUMBER_HERE]). This account is vital for my small business operations and customer communications.
 
 My business relies heavily on WhatsApp to:
 - Communicate with customers about orders and inquiries
@@ -865,7 +912,7 @@ A business owner`,
 
                 3: `Dear WhatsApp Support Team,
 
-I am urgently requesting a review of my restricted WhatsApp account ([NUMBER_HERE]). This account is my primary means of communication with family members, including elderly parents who rely on it for daily check-ins.
+I am urgently requesting a review of my restricted WhatsApp account (+[NUMBER_HERE]). This account is my primary means of communication with family members, including elderly parents who rely on it for daily check-ins.
 
 The sudden restriction has caused significant distress and isolation. I use WhatsApp for:
 - Daily communication with family members abroad
@@ -884,7 +931,7 @@ A concerned user`
             permanent: {
                 1: `Dear WhatsApp Support Team,
 
-I am writing to formally appeal the permanent restriction placed on my WhatsApp account ([NUMBER_HERE]). I believe this action was taken in error and request a manual review of my account.
+I am writing to formally appeal the permanent restriction placed on my WhatsApp account (+[NUMBER_HERE]). I believe this action was taken in error and request a manual review of my account.
 
 I have been a dedicated WhatsApp user since [year] with no previous violations. My account is essential for both personal communications and professional activities.
 
@@ -904,7 +951,7 @@ A long-time user`,
 
                 2: `To WhatsApp Business Support,
 
-I am writing to appeal the permanent restriction of my WhatsApp Business account ([NUMBER_HERE]). This action has had severe consequences for my business and livelihood.
+I am writing to appeal the permanent restriction of my WhatsApp Business account (+[NUMBER_HERE]). This action has had severe consequences for my business and livelihood.
 
 My business has relied on WhatsApp for:
 - Customer service and support
@@ -928,7 +975,7 @@ A business owner`,
 
                 3: `Dear WhatsApp Support Team,
 
-I am writing with urgency to appeal the permanent restriction of my WhatsApp account ([NUMBER_HERE]). This account contains irreplaceable memories and connections that are vital to my personal well-being.
+I am writing with urgency to appeal the permanent restriction of my WhatsApp account (+[NUMBER_HERE]). This account contains irreplaceable memories and connections that are vital to my personal well-being.
 
 The permanent restriction has caused:
 - Loss of years of conversations with deceased loved ones
@@ -1026,8 +1073,8 @@ The community moderators`
             const phoneType = document.getElementById('phoneType').value;
             const spinner = document.getElementById('account-spinner');
 
-            if (!number.startsWith('+') || number.length < 7) {
-                alert('Please enter a valid number like +923xx.');
+            if (!number || number.length < 8) {
+                alert('Please enter a valid number like 923xx.');
                 return;
             }
 
@@ -1088,11 +1135,11 @@ The community moderators`
         }
 
         function sendPermanentUnbanRequest() {
-            const number = document.getElementById('permanentNumber').value.trim();
+            const number = document.getElementById('number').value.trim();
             const spinner = document.getElementById('permanent-spinner');
             
-            if (!number.startsWith('+') || number.length < 7) {
-                alert('Please enter a valid WhatsApp number like +923xx.');
+            if (!number || number.length < 8) {
+                alert('Please enter a valid WhatsApp number like 923xx.');
                 return;
             }
 
@@ -1103,7 +1150,7 @@ The community moderators`
             let appealContent = document.querySelector('.code-block').innerText;
             
             // Replace placeholders with user's number
-            appealContent = appealContent.replace(/\[YOUR_ID\]/g, number);
+            appealContent = appealContent.replace(/\[YOUR_ID\]/g, '+' + number);
             
             // Define all support emails
             const supportEmails = [
@@ -1234,13 +1281,13 @@ The community moderators`
             });
             
             // Update permanent number field when user types
-            const permanentNumberInput = document.getElementById('permanentNumber');
-            if (permanentNumberInput) {
-                permanentNumberInput.addEventListener('input', function() {
+            const numberInput = document.getElementById('number');
+            if (numberInput) {
+                numberInput.addEventListener('input', function() {
                     const number = this.value.trim();
-                    if (number.startsWith('+') && number.length > 6) {
+                    if (number.length > 6) {
                         document.querySelectorAll('#userIdDisplay, #userIdDisplay2, #userIdDisplay3').forEach(el => {
-                            el.textContent = number;
+                            el.textContent = '+' + number;
                         });
                     }
                 });
